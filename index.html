@@ -1,7 +1,44 @@
 <html>
 	<head>
-		<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['geochart']}]}"></script>
-		<script src="main.js"></script>
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+		<script>	
+			google.charts.load('current', {
+        'packages':['geochart'],
+      });
+			google.charts.setOnLoadCallback(drawRegionsMap);
+
+			function drawRegionsMap() {
+
+				var data = google.visualization.arrayToDataTable([
+				['State', 'Popularity'],
+				['Sergipe', 1],
+				['Ceara', 10],
+				['Paraiba', 1],
+				['Roraima', 1],
+				['Amazonas', 1],
+				['Rio Grande do Sul', 1],
+				['Pernambuco', 1],
+				['Tocantins', 1],
+				['Distrito Federal', 1]
+				]);
+
+				var options = {          
+				region: 'BR', // Brazil
+				colorAxis: {colors: ['#a3b4f0', '#042391']},
+				resolution: 'provinces',
+				backgroundColor: '#81d4fa'
+				// datalessRegionColor: '#f8bbd0'
+				};
+
+				var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+				chart.draw(data, options);
+			}
+		</script>
+
+		<!-- <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['geochart']}]}"></script> -->
+		
+		<!-- <script src="main.js"></script> -->
 	</head>
 
 	<body>
